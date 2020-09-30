@@ -1,0 +1,66 @@
+<div>
+    <input class="btn primary right" type="button" (click)="signIn()" value="Sign In" />
+</div>
+<form [formGroup]="jobSeekerForm" novalidate (submit)="submitJobSeekerForm(jobform)" #jobform="ngForm">
+    <div class="form-input">
+        <label id="name">Name: </label>
+        <input class="ng-class form-control" type="text" id="nameInput" formControlName="name" required>
+        <div *ngIf="form.name.errors?.required && jobform.submitted" class="alert-danger">
+            Name is required.
+        </div>
+    </div>
+    <div class="form-input">
+        <label id="emailLabel">Email: </label>
+        <input class="ng-class form-control" type="email" id="emailInput" formControlName="email" required>
+        <div id="emailErrorMessage" *ngIf="jobform.submitted" class="alert-danger">
+            <div *ngIf="form.email.errors?.required">
+                Email is required.
+            </div>
+            <div *ngIf="form.email.errors?.email">
+                Enter valid email address.
+            </div>
+        </div>
+    </div>
+    <div class="form-input">
+        <label id="phoneLabel">
+            Phone:
+        </label>
+        <input class="ng-class form-control" type="number" id="phoneInput" formControlName="phoneNumber" required>
+        <div id="phoneErrorMessage" *ngIf="jobform.submitted" class="alert-danger">
+            <div *ngIf="form.phoneNumber.errors?.required">
+                Phone number is required.
+            </div>
+            <div *ngIf="form.phoneNumber.errors?.pattern">
+                Enter 10 digit phone number.
+            </div>
+        </div>
+    </div>
+    <div class="form-input" name="resume">
+        <label>Resume: </label>
+        <input #resumeFileInput type="file" (change)="onFileChange($event)">
+        <input type="hidden" name="resume" formControlName="resume" required/>
+        <div *ngIf="form.resume.errors?.required && jobform.submitted" class="alert-danger">
+            Upload resume.
+        </div>
+    </div>
+    <div class="form-input" name="like">
+        <label>Do you like working? </label>
+        <input type="radio" name="likeWorking" value="true" formControlName="likeWorking"> Yes
+        &nbsp;&nbsp;
+        <input type="radio" name="likeWorking" value="false" formControlName="likeWorking"> No
+        <div *ngIf="form.likeWorking.errors?.required && jobform.submitted" class="alert-danger">
+            Answer the question.
+        </div>
+    </div>
+    <div class="form-input">
+        <re-captcha (resolved)="resolved($event)" formControlName="recaptcha" 
+            siteKey="RECAPTCHA_TOKEN_SITE" required>
+        </re-captcha>
+        <div *ngIf="form.recaptcha.errors?.required && jobform.submitted" class="alert-danger">
+            Captcha is required.
+        </div>
+    </div>
+    <div class="form-input">
+        <input class="btn primary" type="submit" value="Submit Form" />
+    </div>
+</form>

@@ -1,0 +1,10 @@
+{
+    "ENV": "development",
+    "PORT": 6000,
+    "MONGO_URI": {
+        "DEVELOPMENT" : "mongodb://localhost:27017/geospoc_dev",
+        "PRODUCTION" : "mongodb://localhost:27017/geospoc_prod"
+    },
+    "RECAPTCHA_TOKEN_SERVER": "MY SERVER TOKEN",
+    "SESSION_SECRET": "71AEDA82A378DD281E5376717555A"
+}

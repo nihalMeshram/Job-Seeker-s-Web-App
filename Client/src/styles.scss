@@ -1,0 +1,72 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0px !important;
+    --backgroundColor: #fde5b8;
+    // --textColor: white;
+    background-color: var(--backgroundColor);
+    // color: var(--textColor);
+}
+
+.container{
+    width: 70%;
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid;
+    position: relative;
+    text-align: center;
+}
+
+.alert-danger{
+    color: #dd567f;
+}
+
+.btn{
+    cursor: pointer;
+    outline: none;
+    padding: 10px 15px 10px 15px;
+    border: none;
+    margin: 5px;
+}
+
+.btn:hover{
+    background: gray;
+}
+
+.btn:disabled{
+    cursor: not-allowed;
+}
+
+.btn.primary{
+    background: #82cbff;
+    border-radius: 25px;
+}
+.btn.primary:hover{
+    background: #346a91;
+}
+
+.btn.danger{
+    background: #dd567f;
+    border-radius: 25px;
+}
+.btn.danger:hover{
+    background: #8a2b47;
+}
+
+.btn.secondary{
+    background: #399416;
+    border-radius: 25px;
+}
+.btn.secondary:hover{
+    background-color: #27630f;
+}
+
+.form-control{
+    width: 30%;
+    line-height: 25px;
+    outline: none;
+}
+
+.form-input{
+    margin: 20px;    
+}
+

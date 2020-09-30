@@ -1,0 +1,57 @@
+<form [formGroup]="loginForm" novalidate (submit)="submitLoginForm(loginform)" #loginform="ngForm" *ngIf="isLoginSelected">
+    <div class="form-input">
+        <input class="ng-class form-control" placeholder="email" type="email" id="emailInput" formControlName="email" required>
+        <div id="emailErrorMessage" *ngIf="loginform.submitted" class="alert-danger">
+            <div *ngIf="loginControl.email.errors?.required">
+                Email is required.
+            </div>
+            <div *ngIf="loginControl.email.errors?.email">
+                Enter valid email address.
+            </div>
+        </div>
+    </div>
+    <div class="form-input">
+        <input class="ng-class form-control" placeholder="password" type="password" id="passwordInput" formControlName="password" required>
+        <div id="emailErrorMessage" *ngIf="loginform.submitted" class="alert-danger">
+            <div *ngIf="loginControl.password.errors?.required && loginform.submitted" class="alert-danger">
+                Password is required.
+            </div>
+        </div>
+    </div>
+    <div class="form-input">
+        <input class="btn primary" type="submit" value="LogIn" />
+        <span class="text-link" (click)="toggleLoginRegister()">Register here</span>
+    </div>
+</form>
+
+<form [formGroup]="registerForm" novalidate (submit)="submitRegisterForm(registerform)" #registerform="ngForm" *ngIf="!isLoginSelected">
+    <div class="form-input">
+        <input class="ng-class form-control" placeholder="Full Name" type="text" id="nameInput" formControlName="name" required>
+        <div *ngIf="registerControl.name.errors?.required && registerform.submitted" class="alert-danger">
+            Name is required.
+        </div>
+    </div>
+    <div class="form-input">
+        <input class="ng-class form-control" placeholder="email" type="email" id="emailInput" formControlName="email" required>
+        <div id="emailErrorMessage" *ngIf="registerform.submitted" class="alert-danger">
+            <div *ngIf="registerControl.email.errors?.required">
+                Email is required.
+            </div>
+            <div *ngIf="registerControl.email.errors?.email">
+                Enter valid email address.
+            </div>
+        </div>
+    </div>
+    <div class="form-input">
+        <input class="ng-class form-control" placeholder="password" type="password" id="passwordInput" formControlName="password" required>
+        <div id="emailErrorMessage" *ngIf="registerform.submitted" class="alert-danger">
+            <div *ngIf="registerControl.password.errors?.required && registerform.submitted" class="alert-danger">
+                Password is required.
+            </div>
+        </div>
+    </div>
+    <div class="form-input">
+        <input class="btn primary" type="submit" value="Register" />
+        <span class="text-link" (click)="toggleLoginRegister()">Login here</span>
+    </div>
+</form>

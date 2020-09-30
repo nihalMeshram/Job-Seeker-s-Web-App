@@ -1,0 +1,30 @@
+<div>
+    <input class="btn primary right" type="button" (click)="logOut()" value="Log Out" />
+</div>
+<input *ngIf="isAdmin" type="button" class="btn secondary" style="float: right; position: absolute; right: 0px;" (click)="approveEmail()" value="Approve emails"/>
+<div class="div-main">
+    <div class="search-div">
+        <input #searchQuery type="text" placeholder="search by name or email" class="search-input">
+        <input type="button" value="Search" class="btn primary" (click)="searchJobSeeker(searchQuery.value)">
+    </div>
+    <div>
+        <ul style="padding: 10px; border: 1px solid;" *ngFor="let jobSeeker of jobSeekers;">
+            <div>
+                <sapn>Name: {{jobSeeker.name}}</sapn>
+                <span [routerLink]="['/job-seeker-profile', jobSeeker._id]" class="text-link">View Profile</span>
+            </div>
+            <div style="margin-top: 10px;">
+                <span>Email: {{jobSeeker.email}}</span>
+            </div>
+        </ul>
+        <ul *ngIf="!loadingJobSeekrs && jobSeekers?.length == 0" style="padding: 10px;">
+            No applications yet.
+        </ul>
+        <div *ngIf="loadingJobSeekrs" style="text-align: center;">Loading...</div>
+    </div>
+    <div *ngIf="!loadingJobSeekrs && jobSeekers?.length > 0">
+        <input [disabled] = "page == 0" type="button" class="btn" value="<< Previous" (click)="previous()">
+        <input [disabled]="(page + 1) == totalPages" type="button" class="btn" value="Next >>" (click)="next()">
+        <span>&nbsp;&nbsp; Page: {{page + 1}} out of {{totalPages}} (Row's limit is {{limit}})</span>
+    </div>
+</div>

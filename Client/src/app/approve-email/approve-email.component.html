@@ -1,0 +1,14 @@
+<div class="div-main">
+    <ul style="border: 1px solid; padding: 10px;" *ngFor="let user of users;">
+        <div>
+            <sapn>Name: {{user.name}}</sapn>
+            <span style="float: right;">
+                <input type="radio" name="{{user.email}}" [checked]="user.isEmailApproved" (click)="approveEmail(user._id, true)"> Approve
+                &nbsp;&nbsp;
+                <input type="radio" name="{{user.email}}" [checked]="!user.isEmailApproved" (click)="approveEmail(user._id, false)">Pending</span>
+        </div>
+        <div>
+            <span>Email: {{user.email}}</span>
+        </div>
+    </ul>
+</div>

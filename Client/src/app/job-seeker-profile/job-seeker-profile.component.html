@@ -1,0 +1,41 @@
+<div *ngIf="jobSeeker" style="line-height: 40px; font-size: 20px;">
+    <div >
+        <label>Name: </label>
+        <span>{{jobSeeker.name}}</span>
+    </div>
+    <div>
+        <label>Email: </label>
+        <span>{{jobSeeker.email}}</span>
+    </div>
+    <div>
+        <label>Phone Number: </label>
+        <span>{{jobSeeker.phoneNumber}}</span>
+    </div>
+    <div>
+        <label>Application Date: </label>
+        <span>{{jobSeeker.appliedOn | date: 'dd/MM/yyyy'}}</span>
+    </div>
+    <div>
+        <label>Like working: </label>
+        <span>{{jobSeeker.likeWorking ? 'Yes': 'No'}}</span>
+    </div>
+    <div>
+        <label>Resume: </label>
+        <span class="text-link" (click)="downloadResume(jobSeeker.resume)">Download</span>
+    </div>
+    <div>
+        <textarea style="width: 50%; height: 100px; display: inherit; font-size: 20px; padding: 10px;" 
+            type="text" placeholder="comment here" (input)="comment = $event.target.value"></textarea>
+        <input class="btn primary" type="button" (click)="addComment()" value="Comment"> 
+    </div>
+    <div style="margin-top: 20px;">
+        <label>Comments: </label>
+        <ul style="margin-left: 30px;" *ngFor="let comment of jobSeeker.comments">
+            <li>{{comment.comment}}</li>
+            <span>Comment By: {{comment.from?.name}} on {{comment.dateAndTime | date: 'dd/MM/yyyy HH:mm:ss'}}</span>
+        </ul>
+        <div style="margin-left: 30px;" *ngIf="jobSeeker.comments.length == 0">
+            <span>No comments on this profile yet.</span>
+        </div>
+    </div>
+</div>
